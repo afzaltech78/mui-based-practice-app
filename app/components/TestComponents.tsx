@@ -1,11 +1,26 @@
 /** @format */
 "use client";
-import { Button, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 
 export const TestComponents = () => {
   const [name, setName] = useState("");
-  const [input, setInput] = useState({ email: "" });
+  const [input, setInput] = useState({
+    email: "",
+    subscribed: false,
+    age: "",
+  });
 
   const handleChange = (e) => {
     setInput((prev) => ({
@@ -16,10 +31,11 @@ export const TestComponents = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
 
-    setInput((prev) => ({
-      ...prev,
-      email: "done",
-    }));
+    console.log("eeee", e?.target, input);
+    // setInput((prev) => ({
+    //   ...prev,
+    //   email: "done",
+    // }));
   };
 
   return (
@@ -74,7 +90,7 @@ export const TestComponents = () => {
         />
       </div>
 
-      {/* ---------------->>> Textfiled Form <<<----------------*/}
+      {/* ---------------->>> Textfiled Form, checkboxs, select <<<----------------*/}
       <div className="mt-6">
         <form onSubmit={handelSubmit}>
           <TextField
@@ -86,7 +102,54 @@ export const TestComponents = () => {
             className="ms-4"
             required
           />
-          <Typography>{input.email}</Typography>
+          {/* <Typography>{input.email}</Typography> */}
+
+          {/* ---------------->>>  Checkboxs <<<----------------*/}
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={input.subscribed}
+                  onChange={() =>
+                    setInput((prev) => ({
+                      ...prev,
+                      subscribed: !input.subscribed,
+                    }))
+                  }
+                />
+              }
+              label={"Subscribe"}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  // checked={input.subscribed}
+                  indeterminate={true}
+                  // onChange={() =>
+                  //   setInput((prev) => ({
+                  //     ...prev,
+                  //     subscribed: !input.subscribed,
+                  //   }))
+                  // }
+                />
+              }
+              label={"Like"}
+            />
+          </FormGroup>
+
+          {/* ---------------->>>  Select Options <<<----------------*/}
+          <FormControl fullWidth required>
+            <InputLabel>Age</InputLabel>
+            <Select
+              name="age"
+              value={input.age}
+              label="Age"
+              onChange={handleChange}>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
           <Button type="submit">Submit now</Button>
         </form>
       </div>
