@@ -3,8 +3,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppBarComp } from "./components/AppBarComp";
-import RsponsiveAppBar from "./components/RsponsiveAppBar";
+import { AppBarComp } from "./(practice)/components/AppBarComp";
+import RsponsiveAppBar from "./(practice)/components/RsponsiveAppBar";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./utils/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 /* we add toolbar, menu items in app bar component  and other in test component*/
@@ -26,8 +28,12 @@ export default function RootLayout({
         cz-shortcut-listen="true" //add to resolve its warning
       >
         {/* <AppBarComp /> */}
-        <RsponsiveAppBar />
+        {/* <RsponsiveAppBar /> */}
+
+        {/* use theme provier if needs custom theme */}
+        {/* <ThemeProvider theme={theme}> */}
         {children}
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

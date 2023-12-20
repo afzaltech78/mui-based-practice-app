@@ -81,10 +81,10 @@ export default function DataGridComp() {
       </Box>
       <AppBar position="static">
         <Toolbar>
-          <IconButton>
+          <IconButton color="inherit">
             <AcUnitIcon />
           </IconButton>
-          <Button>
+          <Button color="inherit">
             <AccountCircleIcon />
           </Button>
         </Toolbar>

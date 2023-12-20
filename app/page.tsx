@@ -1,13 +1,15 @@
 /** @format */
 
 import Image from "next/image";
-import { TestComponents } from "./components/TestComponents";
-import { TabBarComp } from "./components/TabBarComp";
-import { TestComponents2 } from "./components/TestComponents2";
-import { GridComponents } from "./components/GridComponents";
-import RsponsiveAppBar from "./components/RsponsiveAppBar";
-import ImageListComp from "./components/ImageListComp";
-import DataGridComp from "./components/DataGridComp";
+import { TestComponents } from "./(practice)/components/TestComponents";
+import { TabBarComp } from "./(practice)/components/TabBarComp";
+import { TestComponents2 } from "./(practice)/components/TestComponents2";
+import { GridComponents } from "./(practice)/components/GridComponents";
+import RsponsiveAppBar from "./(practice)/components/RsponsiveAppBar";
+import ImageListComp from "./(practice)/components/ImageListComp";
+import DataGridComp from "./(practice)/components/DataGridComp";
+import { StyledComponet } from "./(practice)/components/StyledComponet";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,7 +22,9 @@ export default function Home() {
       {/* <GridComponents /> */}
       {/* <RsponsiveAppBar /> */}
       {/* <ImageListComp /> */}
-      <DataGridComp />
+      {/* <DataGridComp /> */}
+      <StyledComponet />
+      <Link href={"/login"}>Go To Login</Link>
     </main>
   );
 }
