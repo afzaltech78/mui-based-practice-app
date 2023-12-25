@@ -23,7 +23,7 @@ export default function Home() {
       {/* <RsponsiveAppBar /> */}
       {/* <ImageListComp /> */}
       {/* <DataGridComp /> */}
-      <StyledComponet />
+      {/* <StyledComponet /> */}
       <Link href={"/login"}>Go To Login</Link>
     </main>
   );
