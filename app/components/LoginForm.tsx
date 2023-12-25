@@ -9,11 +9,12 @@ import { CustomImage } from "./CustomImage";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { useState } from "react";
+import Link from "next/link";
 export const LoginForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   return (
     <div className={styles.container}>
-      <div className={styles.formContainer}>
+      <form className={styles.formContainer}>
         <div className={styles.subContainer}>
           <CustomImage
             src={"/fg_icon.png"}
@@ -50,15 +51,19 @@ export const LoginForm = () => {
           Forget Password?
         </CustomLabelButton>
 
-        <CustomButton className={styles.customButton}>Sign In</CustomButton>
+        <CustomButton
+          className={styles.customButton}
+          onClick={() => alert("Sign in success")}>
+          Sign In
+        </CustomButton>
 
         <Typography className={styles.signUp}>
-          Create a New Account?{" "}
-          <CustomLabelButton>
+          Create a New Account?{"  "}
+          <Link href="/register" className="text-black">
             <b>Sign Up</b>
-          </CustomLabelButton>
+          </Link>
         </Typography>
-      </div>
+      </form>
     </div>
   );
 };
