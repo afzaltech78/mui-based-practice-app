@@ -1,7 +1,5 @@
 /** @format */
 
-import { Box } from "@mui/material";
-import Image from "next/image";
 import styles from "../assets/css/components/AuthHeader.module.css";
 import { CustomImage } from "./CustomImage";
 

@@ -8,13 +8,38 @@ import styles from "../assets/css/components/LoginForm.module.css";
 import { CustomImage } from "./CustomImage";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
-import { useState } from "react";
+import { JSXElementConstructor, ReactElement, useState } from "react";
 import Link from "next/link";
+import {
+  Controller,
+  ControllerFieldState,
+  ControllerRenderProps,
+  FieldValues,
+  UseFormStateReturn,
+  useForm,
+} from "react-hook-form";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
+
 export const LoginForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit = (data) => {
+    // e?.preventDefault();
+    // console.log("llllll", data);
+  };
   return (
     <div className={styles.container}>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.subContainer}>
           <CustomImage
             src={"/fg_icon.png"}
@@ -27,24 +52,40 @@ export const LoginForm = () => {
             className={styles.country_icon}
           />
         </div>
-
-        <CustomTextInput
-          type="email"
-          inputLabel="Email"
-          sx={{ marginBottom: 3 }}
+        <Controller
+          rules={{ required: true }}
+          name={"email"}
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <CustomTextInput
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              type="email"
+              inputLabel="Email"
+              sx={{ marginBottom: 3 }}
+            />
+          )}
         />
-
-        <CustomTextInput
-          inputLabel="Password"
-          type={passwordVisible ? "text" : "password"}
-          rightIcon={
-            passwordVisible ? (
-              <VisibilityRoundedIcon />
-            ) : (
-              <VisibilityOffRoundedIcon />
-            )
-          }
-          onRightIconPress={() => setPasswordVisible(!passwordVisible)}
+        <Controller
+          rules={{ required: true }}
+          name={"password"}
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <CustomTextInput
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              inputLabel="Password"
+              type={passwordVisible ? "text" : "password"}
+              rightIcon={
+                passwordVisible ? (
+                  <VisibilityRoundedIcon />
+                ) : (
+                  <VisibilityOffRoundedIcon />
+                )
+              }
+              onRightIconPress={() => setPasswordVisible(!passwordVisible)}
+            />
+          )}
         />
 
         <CustomLabelButton className={styles.customLabelButton}>
@@ -53,14 +94,15 @@ export const LoginForm = () => {
 
         <CustomButton
           className={styles.customButton}
-          onClick={() => alert("Sign in success")}>
+          type="submit"
+          disabled={Object.keys(errors).length > 0}>
           Sign In
         </CustomButton>
 
         <Typography className={styles.signUp}>
-          Create a New Account?{"  "}
-          <Link href="/register" className="text-black">
-            <b>Sign Up</b>
+          Create a New Account?
+          <Link href="/register" className="text-black font-bold">
+            Sign Up
           </Link>
         </Typography>
       </form>
