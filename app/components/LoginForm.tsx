@@ -18,6 +18,7 @@ import {
   UseFormStateReturn,
   useForm,
 } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   email: string;
@@ -33,10 +34,13 @@ export const LoginForm = () => {
     control,
     formState: { errors },
   } = useForm<Inputs>();
+  const router = useRouter();
   const onSubmit = (data) => {
     // e?.preventDefault();
     // console.log("llllll", data);
+    router.push("/dashboard");
   };
+
   return (
     <div className={styles.container}>
       <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
@@ -62,10 +66,12 @@ export const LoginForm = () => {
               onChange={(e) => onChange(e.target.value)}
               type="email"
               inputLabel="Email"
-              sx={{ marginBottom: 3 }}
+              containerStyle={{ marginBottom: "20px" }}
+              errorMessage={errors?.email ? "Email is required" : ""}
             />
           )}
         />
+
         <Controller
           rules={{ required: true }}
           name={"password"}
@@ -84,6 +90,7 @@ export const LoginForm = () => {
                 )
               }
               onRightIconPress={() => setPasswordVisible(!passwordVisible)}
+              errorMessage={errors?.password ? "Password is required" : ""}
             />
           )}
         />
@@ -91,14 +98,12 @@ export const LoginForm = () => {
         <CustomLabelButton className={styles.customLabelButton}>
           Forget Password?
         </CustomLabelButton>
-
         <CustomButton
           className={styles.customButton}
           type="submit"
           disabled={Object.keys(errors).length > 0}>
           Sign In
         </CustomButton>
-
         <Typography className={styles.signUp}>
           Create a New Account?
           <Link href="/register" className="text-black font-bold">

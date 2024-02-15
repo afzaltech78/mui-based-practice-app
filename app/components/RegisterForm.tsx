@@ -9,12 +9,21 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 export const RegisterForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const router = useRouter();
+  const onSubmit = (data) => {
+    // e?.preventDefault();
+    // console.log("llllll", data);
+    router.push("/dashboard");
+  };
+
   return (
     <div className={styles.container}>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={onSubmit}>
         <div className={styles.subContainer}>
           <CustomImage
             src={"/fg_icon.png"}
