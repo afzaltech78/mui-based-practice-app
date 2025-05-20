@@ -20,11 +20,35 @@ export default function Home() {
       {/* includes cards */}
       {/* <TestComponents2 /> */}
       {/* <GridComponents /> */}
-      {/* <RsponsiveAppBar /> */}
-      {/* <ImageListComp /> */}
+      <RsponsiveAppBar />
+      <ImageListComp />
       {/* <DataGridComp /> */}
       {/* <StyledComponet /> */}
-      <Link href={"/login"}>Go To Login</Link>
+      {/* <Link href={"/login"}>Go To Login</Link>
+       */}
+      {/* <div
+        style={{
+          overflowY: "scroll",
+          scrollSnapType: "y mandatory",
+          height: "100vh",
+        }}>
+        {[1, 2, 3, 4].map((item) => (
+          <div
+            className={`${
+              item % 2 == 0 ? "bg-slate-300" : "bg-slate-400"
+            } h-[100vh]`}
+            style={{
+              scrollSnapAlign: "start",
+              scrollMargin: 0,
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            Hello: {item}
+          </div>
+        ))}
+      </div> */}
     </main>
   );
 }
